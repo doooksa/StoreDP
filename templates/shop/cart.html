@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Регистрация
+{% endblock title %}
+
+{% block container %}
+
+
+
+{% for item in items %}
+    <div class="row">
+        <div class="col-12 col-md-1 item">
+            &nbsp;&nbsp;&nbsp;{{ forloop.counter }}
+        </div>
+        <div class="col-12 col-md-4 item">
+            {{ item.product }}
+        </div>
+        <div class="col-12 col-md-2 item">
+            {{ item.quantity }}
+        </div>
+        <div class="col-12 col-md-2 item">
+            {{ item.price }}
+        </div>
+        <div class="col-12 col-md-2 item">
+            {{ item.amount }}
+        </div>
+        <div class="col-12 col-md-1 item">
+        </div>
+
+        </div>
+<div class="col-12 col-md-1 item">
+    <form method="post" action="{% url 'cart_delete_item' item.pk %}">
+        {% csrf_token %}
+        <button type="submit" style="color: blue"><u>delete</u></button>
+    </form>
+</div>
+
+    </div>
+
+
+{% endfor %}
+<div class="row">
+    <div class="col-12 col-md-1 item">
+            {{ cart.amount }}
+        </div>
+    </div>
+
+
+<a class="contactus-bar-btn f_right" href="{% url 'make_order' %}">
+    Process to Payment
+</a>
+
+
+{% endblock container %}
